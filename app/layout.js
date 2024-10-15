@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Provider from "./Provider";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,18 +15,20 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Real Estate App",
+  title: "PropertyXpert",
   description: "Generated for Real Estate App",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Provider>{children}</Provider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <Provider>{children}</Provider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
